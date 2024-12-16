@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WiFi Connection</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1e90ff, #87ceeb);
+      color: #fff;
+      overflow: hidden;
+    }
+
+    #background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 1%, transparent 80%);
+      animation: animateBackground 10s linear infinite;
+    }
+
+    @keyframes animateBackground {
+      0% {
+        transform: translate(0, 0);
+      }
+      50% {
+        transform: translate(-10px, -20px);
+      }
+      100% {
+        transform: translate(0, 0);
+      }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin: 0.5rem;
+    }
+
+    p {
+      text-align: center;
+      margin: 1rem 0;
+      font-size: 1.2rem;
+    }
+
+    .button {
+      background-color: #fff;
+      color: #1e90ff;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #1e90ff;
+      color: #fff;
+    }
+
+    #rulesModal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #rulesModalContent {
+      background-color: #fff;
+      color: #333;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    #closeModal {
+      background-color: #1e90ff;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 8px;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #closeModal:hover {
+      background-color: #fff;
+      color: #1e90ff;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .offline-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #ff4d4d;
+      color: #fff;
+      padding: 0.5rem;
+      text-align: center;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="background"></div>
+  <div class="offline-banner" id="offlineBanner">Network connection unstable. Please try again later.</div>
+
+  <h1>Congratulations!</h1>
+  <p>You are now connected to the internet. Enjoy your experience!</p>
+  <button class="button" onclick="openModal()">View Network Rules</button>
+
+  <div id="rulesModal">
+    <div id="rulesModalContent">
+      <h2>Network Rules</h2>
+      <p>Please adhere to the following rules while using our network:</p>
+      <ul style="text-align: left;">
+        <li>Be respectful to others online.</li>
+        <li>Do not access illegal or inappropriate content.</li>
+        <li>Your activity may be monitored to ensure compliance.</li>
+      </ul>
+      <button id="closeModal" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <footer>
+    Powered by Knovon Networking
+  </footer>
+
+  <script>
+    function openModal() {
+      document.getElementById('rulesModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('rulesModal').style.display = 'none';
+    }
+
+    // Simulate offline detector (for demonstration)
+    window.addEventListener('offline', () => {
+      document.getElementById('offlineBanner').style.display = 'block';
+    });
+
+    window.addEventListener('online', () => {
+      document.getElementById('offlineBanner').style.display = 'none';
+    });
+  </script>
+</body>
+</html>
